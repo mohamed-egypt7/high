@@ -17,6 +17,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            position: relative;
         }
         .card {
             background: #1e293b;
@@ -45,12 +46,37 @@
             padding: 15px;
             border: 1px dashed #475569;
             margin-top: 15px;
+            text-align: right;
         }
         p {
             color: #94a3b8;
             font-size: 14px;
             line-height: 1.8;
             margin: 0;
+        }
+
+        /* الزر التفاعلي العائم مع اللينك الخاص بك */
+        .floating-btn {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            color: #0f172a;
+            padding: 12px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s ease;
+            z-index: 100;
+        }
+        .floating-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.6);
         }
     </style>
 </head>
@@ -66,5 +92,10 @@
             <p style="margin-top: 8px;">• محتوى الصفحة لسه ما اتكتبش.</p>
         </div>
     </div>
+
+    <!-- زر التواصل معنا مزود بالرابط الخاص بك -->
+    <a href="https://S-h.s.gy" class="floating-btn" target="_blank">
+        <i class="fa-solid fa-paper-plane"></i> تواصل معنا
+    </a>
 </body>
 </html>
