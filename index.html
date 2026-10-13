@@ -64,7 +64,7 @@
             margin: 0;
         }
 
-        /* زر هيلب العائم بالرابط الخاص بك */
+        /* زر Help العائم بالرابط الخاص بك */
         .floating-btn {
             position: fixed;
             bottom: 25px;
@@ -75,13 +75,14 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 15px;
             box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
             display: flex;
             align-items: center;
             gap: 8px;
             transition: 0.3s ease;
             z-index: 100;
+            direction: ltr; /* لضبط شكل الأيقونة مع النص الإنجليزي */
         }
         .floating-btn:hover {
             transform: translateY(-3px);
@@ -104,9 +105,9 @@
         </div>
     </div>
 
-    <!-- زر هيلب بالرابط المطلوب -->
+    <!-- زر Help بالرابط المطلوب -->
     <a href="https://S-h.s.gy" class="floating-btn" target="_blank">
-        <i class="fa-solid fa-life-ring"></i> هيلب
+        <i class="fa-solid fa-life-ring"></i> Help
     </a>
 
     <script>
