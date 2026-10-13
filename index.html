@@ -29,11 +29,31 @@
             text-align: center;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
+        
+        /* تأثير الحركة والاهتزاز للوجو التفاعلي */
         .icon {
             font-size: 45px;
             color: #38bdf8;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            animation: workBounce 1.2s infinite ease-in-out;
+            transition: all 0.5s ease;
         }
+
+        @keyframes workBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(-4deg); }
+        }
+
+        /* نص الحالة المتحرك تحت اللوجو */
+        #phaseText {
+            font-size: 13px;
+            color: #38bdf8;
+            margin-bottom: 20px;
+            font-weight: bold;
+            min-height: 20px;
+            transition: opacity 0.3s ease;
+        }
+
         h1 {
             font-size: 22px;
             color: #f8fafc;
@@ -55,7 +75,7 @@
             margin: 0;
         }
 
-        /* الزر التفاعلي العائم مع اللينك الخاص بك */
+        /* الزر التفاعلي العائم (زر هيلب) */
         .floating-btn {
             position: fixed;
             bottom: 25px;
@@ -82,9 +102,12 @@
 </head>
 <body>
     <div class="card">
-        <div class="icon">
-            <i class="fa-solid fa-person-digging"></i>
+        <!-- اللوجو التفاعلي المتحرك -->
+        <div class="icon" id="animatedIcon">
+            <i class="fa-solid fa-person-walking"></i>
         </div>
+        <div id="phaseText">جاري وصول العامل للموقع...</div>
+
         <h1>عذراً، هذه الصفحة غير متاحة حالياً</h1>
         
         <div class="msg-box">
@@ -93,9 +116,38 @@
         </div>
     </div>
 
-    <!-- زر التواصل معنا مزود بالرابط الخاص بك -->
+    <!-- زر هيلب مزود بالرابط الخاص بك -->
     <a href="https://S-h.s.gy" class="floating-btn" target="_blank">
-        <i class="fa-solid fa-paper-plane"></i> تواصل معنا
+        <i class="fa-solid fa-life-ring"></i> هيلب
     </a>
+
+    <script>
+        // سيناريو حركة العامل والبناء (تفاعلي متكرر)
+        const iconElement = document.querySelector('#animatedIcon i');
+        const phaseText = document.getElementById('phaseText');
+        
+        const workPhases = [
+            { icon: 'fa-person-walking', text: 'العامل في طريق الوصول للموقع...' },
+            { icon: 'fa-hammer', text: 'جاري بناء وتأسيس هيكل الصفحة...' },
+            { icon: 'fa-person-digging', text: 'العمل جاري وتجهيز المحتوى...' }
+        ];
+        
+        let currentStep = 0;
+
+        function runStoryAnimation() {
+            // تأثير خفيف للاختفاء والظهور عند تغير المرحلة
+            phaseText.style.opacity = 0;
+            setTimeout(() => {
+                iconElement.className = `fa-solid ${workPhases[currentStep].icon}`;
+                phaseText.innerText = workPhases[currentStep].text;
+                phaseText.style.opacity = 1;
+                
+                currentStep = (currentStep + 1) % workPhases.length;
+            }, 300);
+        }
+
+        // يتغير المشهد كل 2.5 ثانية ويعيد نفسه باستمرار
+        setInterval(runStoryAnimation, 2500);
+    </script>
 </body>
 </html>
