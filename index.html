@@ -30,28 +30,17 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
         
-        /* تأثير الحركة والاهتزاز للوجو التفاعلي */
+        /* أنيميشن الاهتزاز والحركة للوجو العامل */
         .icon {
-            font-size: 45px;
-            color: #38bdf8;
-            margin-bottom: 10px;
-            animation: workBounce 1.2s infinite ease-in-out;
-            transition: all 0.5s ease;
-        }
-
-        @keyframes workBounce {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-8px) rotate(-4deg); }
-        }
-
-        /* نص الحالة المتحرك تحت اللوجو */
-        #phaseText {
-            font-size: 13px;
+            font-size: 50px;
             color: #38bdf8;
             margin-bottom: 20px;
-            font-weight: bold;
-            min-height: 20px;
-            transition: opacity 0.3s ease;
+            animation: workerAction 1.5s infinite ease-in-out;
+        }
+
+        @keyframes workerAction {
+            0%, 100% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.12) translateY(-6px); }
         }
 
         h1 {
@@ -75,7 +64,7 @@
             margin: 0;
         }
 
-        /* الزر التفاعلي العائم (زر هيلب) */
+        /* زر هيلب العائم بالرابط الخاص بك */
         .floating-btn {
             position: fixed;
             bottom: 25px;
@@ -102,11 +91,10 @@
 </head>
 <body>
     <div class="card">
-        <!-- اللوجو التفاعلي المتحرك -->
-        <div class="icon" id="animatedIcon">
-            <i class="fa-solid fa-person-walking"></i>
+        <!-- أيقونة العامل المتحركة بأكشن تلقائي -->
+        <div class="icon">
+            <i id="workerIcon" class="fa-solid fa-person-walking"></i>
         </div>
-        <div id="phaseText">جاري وصول العامل للموقع...</div>
 
         <h1>عذراً، هذه الصفحة غير متاحة حالياً</h1>
         
@@ -116,38 +104,21 @@
         </div>
     </div>
 
-    <!-- زر هيلب مزود بالرابط الخاص بك -->
+    <!-- زر هيلب بالرابط المطلوب -->
     <a href="https://S-h.s.gy" class="floating-btn" target="_blank">
         <i class="fa-solid fa-life-ring"></i> هيلب
     </a>
 
     <script>
-        // سيناريو حركة العامل والبناء (تفاعلي متكرر)
-        const iconElement = document.querySelector('#animatedIcon i');
-        const phaseText = document.getElementById('phaseText');
-        
-        const workPhases = [
-            { icon: 'fa-person-walking', text: 'العامل في طريق الوصول للموقع...' },
-            { icon: 'fa-hammer', text: 'جاري بناء وتأسيس هيكل الصفحة...' },
-            { icon: 'fa-person-digging', text: 'العمل جاري وتجهيز المحتوى...' }
-        ];
-        
-        let currentStep = 0;
+        // تغيير أكشن العامل عبر الأيقونات تلقائياً من غير أي نصوص متغيرة
+        const workerIcons = ['fa-person-walking', 'fa-hammer', 'fa-person-digging'];
+        let currentIndex = 0;
+        const workerEl = document.getElementById('workerIcon');
 
-        function runStoryAnimation() {
-            // تأثير خفيف للاختفاء والظهور عند تغير المرحلة
-            phaseText.style.opacity = 0;
-            setTimeout(() => {
-                iconElement.className = `fa-solid ${workPhases[currentStep].icon}`;
-                phaseText.innerText = workPhases[currentStep].text;
-                phaseText.style.opacity = 1;
-                
-                currentStep = (currentStep + 1) % workPhases.length;
-            }, 300);
-        }
-
-        // يتغير المشهد كل 2.5 ثانية ويعيد نفسه باستمرار
-        setInterval(runStoryAnimation, 2500);
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % workerIcons.length;
+            workerEl.className = `fa-solid ${workerIcons[currentIndex]}`;
+        }, 2000);
     </script>
 </body>
 </html>
